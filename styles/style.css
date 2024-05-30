@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'Ultimate';
+    src: url('fonts/ultimate-serial-extrabold-regular.ttf') format('truetype');
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+#container-header {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 1080px;
+}
+
+header {
+    background-color: #fbf7f7;
+    padding: 14px;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.071);
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+#logotipo {
+    width: 42%;
+}
+
+#logotipo h1 {
+    color: #00D7A7;
+    cursor: pointer;
+    font-family: 'Ultimate', sans-serif;
+    display: inline-block
+}
+
+#menu {
+    width: 60%;
+}
+
+#menu nav {
+    display: flex;
+}
+
+#menu nav li {
+    display: flex;
+    list-style-type: none;
+}
+
+#menu nav li a {
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px;
+}
+
+#menu nav li a:hover {
+    background-color: #00D7A7;
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#lupa {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+#search-box {
+    margin-left: 20px;
+    background-color: #00D7A7;
+    height: 40px;
+    padding: 10px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    color: #fff;
+    line-height: 20px;
+    width: 240px;
+    margin-right: 10px;
+}
+
+#login {
+    width: 40%;
+}
+
+#login {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+}
+
+#login img {
+    cursor: pointer;
+}
+
+#login h4 {
+    margin-right: 10px;
+}
+
+#login h4 a {
+    text-decoration: none;
+}
+
+#login h4 a:hover {
+    text-decoration: underline;
+}
+
+/* Corpo */
+main {
+    width: 70%;
+    margin: auto;
+}
+
+/* Rodapé */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flex container para o conteúdo principal */
+#content {
+    flex: 1;
+}
+
+/* Estilos para o footer */
+footer {
+    background-color: #EFEFEF;
+    width: 100%;
+    color: rgb(119, 119, 119);
+    height: 2.5rem;
+    text-align: center;
+    line-height: 2.5rem; /* Alinha verticalmente o texto */
+}
