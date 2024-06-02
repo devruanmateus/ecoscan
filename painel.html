@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecoscan</title>
-    <link rel="stylesheet" href="styles/sobrestyle.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/painelstyle.css">
 </head>
 <body>
     <header>
@@ -16,8 +16,8 @@
             <div id="menu">
                 <nav>
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="painel.html">Painel</a></li>
-                    <li><a href="sobre.html" id="sobre">Sobre</a></li>
+                    <li><a href="painel.html" id="painel">Painel</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
                 </nav>
             </div>
             <div id="search-box">
@@ -32,21 +32,32 @@
             </div>
         </div>
     </header>
-    <main>
-        <div id="container-sobre">
-            <div id="introducao">
-                <h1>Sobre nós</h1>
-                <p>Somos um grupo de jovens dedicados a contribuir de maneira positiva para o nosso planeta. Reconhecendo que o solo é um recurso escasso e vital para a plantação e produção de alimentos, e que está ameaçado pela infertilidade devido ao uso inadequado de fertilizantes e outras atividades humanas, buscamos atuar nessa área. Nosso projeto visa desenvolver soluções e ferramentas para preservar e cuidar do solo.</p>
-            </div>
 
-            <div id="ilustracao">
-                <img src="imagens/8618611.jpg" alt="" width="430">
-            </div>
+    <main>
+        <div id="painel-container">
+            <h1 id="titulo">Projetos analisados</h1>
+            <table>
+                <tr>
+                    <th id="arquivo">Arquivo</th>
+                    <th>Valor obtido</th>
+                    <th>Resultado</th>
+                    <th>Data</th>
+                </tr>
+
+                <tr>
+                    <td id="archive"><a href="#">Archive</a></td>
+                    <td>4.8</td>
+                    <td><a href="#"><img id="download" src="imagens/download.png" alt="Baixar"></a></td>
+                    <td>02/06/24</td>
+                </tr>
+            </table>
         </div>
     </main>
+
     <div id="content">
 
     </div>
+
     <footer>
         <p>Feira de Ciências &copy;</p>
     </footer>

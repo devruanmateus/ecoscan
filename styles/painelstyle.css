@@ -1,0 +1,57 @@
+#painel {
+    background-color: #02c49a;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+#titulo {
+    margin-bottom: 25px;
+}
+
+table {
+    width: 800px;
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+    justify-content: center;
+}
+
+th {
+    padding: 5px;
+    color: #fff;
+    font-size: 14px;
+}
+
+th, tr, td {
+    border: 1px solid black;
+}
+
+tr {
+    background-color: #02c49a;
+}
+
+td {
+    background-color: whitesmoke;
+    width: 200px;
+    padding: 10px;
+}
+
+#arquivo {
+    width: 300px;
+}
+
+#download {
+    width: 20px;
+}
+
+#archive {
+    color: black;
+}
+
+#archive a {
+    color:#019575;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+}
