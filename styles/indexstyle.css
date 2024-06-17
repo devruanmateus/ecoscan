@@ -1,4 +1,9 @@
 /* Menu */
+main h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
 #inicio {
     background-color: #02c49a;
     color: #fff;

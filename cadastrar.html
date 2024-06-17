@@ -20,12 +20,6 @@
                     <li><a href="sobre.html">Sobre</a></li>
                 </nav>
             </div>
-            <div id="search-box">
-                <input type="text" id="search-txt" placeholder="Pesquisar" autocomplete="off">
-                <a href="#" id="search-btn">
-                    <img src="imagens/search.png" alt="Lupa" height="15" width="15" style="margin-right: 5px;">
-                </a>
-            </div>
             <div id="login">
                 <h4><a href="login.html">Entre</a> | <a href="#">Cadastre-se</a></h4>
                 <img src="imagens/user.png" alt="Usuário" width="25">
@@ -43,17 +37,17 @@
 
                 <div class="cadastrar-box">
                     <label for="iemail">E-mail</label><br>
-                    <input type="email" name="email" id="iemail" placeholder="Digite seu email">
+                    <input type="email" name="email" id="iemail" placeholder="Digite seu email" required>
                 </div>
 
                 <div class="cadastrar-box">
                     <label for="ipassword">Senha</label><br>
-                    <input type="password" name="password" id="ipassword" placeholder="Digite sua senha" minlength="5">
+                    <input type="password" name="password" id="ipassword" placeholder="Digite sua senha" minlength="5" required>
                 </div>
 
                 <div class="cadastrar-box">
                     <label for="ipassword">Confirmar senha</label><br>
-                    <input type="password" name="password" id="ipassword" placeholder="Digite a senha novamente" minlength="5">
+                    <input type="password" name="password" id="ipassword" placeholder="Digite a senha novamente" minlength="5" required>
                 </div>
 
                 <button id="btn">Cadastre-se</button>

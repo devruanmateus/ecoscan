@@ -32,7 +32,7 @@ header {
 }
 
 #logotipo {
-    width: 42%;
+    width: 25%;
 }
 
 #logotipo h1 {
@@ -43,7 +43,7 @@ header {
 }
 
 #menu {
-    width: 60%;
+    width: 90%;
 }
 
 #menu nav {
@@ -78,29 +78,9 @@ header {
     margin-right: 5px;
 }
 
-#search-box {
-    margin-left: 20px;
-    background-color: #ffffff;
-    height: 40px;
-    padding: 10px;
-    border-radius: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#search-txt {
-    border: none;
-    background: none;
-    outline: none;
-    padding: 0;
-    line-height: 20px;
-    width: 240px;
-    margin-right: 10px;
-}
-
 #login {
-    width: 40%;
+    width: 25%;
+    float: left;
 }
 
 #login {
