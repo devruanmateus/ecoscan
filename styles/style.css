@@ -20,7 +20,7 @@ body {
     align-items: center;
     margin: 0 auto;
     justify-content: center;
-    max-width: 1080px;
+    max-width: 1008px;
 }
 
 header {
@@ -32,18 +32,24 @@ header {
 }
 
 #logotipo {
-    width: 25%;
+    font-size: 14px;
+    width: 20%;
     float: right;
 }
 
-#logotipo h1 {
+#logotipo h1 a {
     color: #fff;
     cursor: pointer;
     font-family: 'Ultimate', sans-serif;
-    display: inline-block
+    display: inline-block;
+    text-decoration: none;
 }
 
 /* Configs do menu do cabeçário */
+#scanner, #about {
+    display: none;
+}
+
 #menu {
     width: 90%;
 }
@@ -76,16 +82,26 @@ header {
 }
 
 /* Configs do menu do perfil */
+
 #login {
     position: relative;
     float: left;
+
 }
 
+/* Nome de usuário */
+#username a {
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Cont. configs do menu do perfil */
 menu {
     opacity: 0;
     visibility: hidden;
-    position: absolute;
-    top: 45px; /* Ajuste conforme necessário */
+    position: absolute; /* Muda para 'fixed' para posicionar relativo à tela */
+    top: 43px; /* Ajuste conforme necessário */
     right: 0;
     background-color: #00d7a8c4;
     box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
@@ -96,6 +112,7 @@ menu {
 menu ul {
     list-style: none;
     margin: 0;
+    padding: 0;
 }
 
 menu ul li:hover {
@@ -103,27 +120,49 @@ menu ul li:hover {
 }
 
 menu ul li a {
-    display: inline-block;
+
+    display: block;
     color: #fff;
     text-decoration: none;
     width: 100%;
-    padding: 17px 24px;
+    padding: 20px 50px 20px 20px; /* Ajusta o padding para alinhar o texto à direita */
+    text-align: left; /* Alinha o texto à direita */
+    box-sizing: border-box;
+    white-space: nowrap; /* Impede que o texto quebre */
+
 }
 
-#user-icon:hover + menu,
+#user-icon:hover ~ menu,
 menu:hover {
     opacity: 1;
     visibility: visible;
 }
 
-#user-icon:hover + menu,
+#user-icon:hover ~ menu,
 menu:hover {
     display: block;
 }
 
+/* Menu da versão celular */
+#menu-icon:hover ~ menu,
+menu:hover {
+    opacity: 1;
+    visibility: visible;
+}
+
+#menu-icon:hover ~ menu,
+menu:hover {
+    display: block;
+}
+
+/* Visualização das opções de login e cadastro */
+#signup-view, #menu-icon {
+    display: none;
+}
+
+/* Opções de login e cadastro */
 #login {
-    width: 25%;
-    float: left;
+    float: right;
 }
 
 #login {
@@ -152,7 +191,7 @@ menu:hover {
 
 /* Corpo */
 main {
-    width: 70%;
+    width: 65%;
     margin: auto;
 }
 
@@ -180,14 +219,31 @@ footer {
 
 /* Media Queries */
 
-@media screen and (min-width: 600px) and (max-width: 760px) {
+/* Versão para pequenas telas */
+@media screen and (max-width: 600px) {
     #menu {
         display: none;
     }
 
+    menu {
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        top: 59px;
+        right: 0;
+        background-color: #00d7a8c4;
+        box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        transition: opacity 0.4s ease, visibility 0.5s ease;
+    }
+
+    #scanner, #about {
+        display: block;
+    }
+
     #logotipo {
         font-size: 13px;
-        margin-right: 25%;
+        margin-right: 18%;
     }
 
     #login {
@@ -198,8 +254,113 @@ footer {
         display: none;
     }
 
-    #menu-img {
+    #menu-icon {
+        display: block;
+        margin-left: 85%;
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(277deg) brightness(102%) contrast(103%);
+    }
+
+    menu {
+        width: 150px;
+        font-size: 14px;
+    }
+
+    menu ul li a {
+
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        width: 100%;
+        padding: 15px 60px 15px 15px; /* Ajusta o padding para alinhar o texto à direita */
+        text-align: left; /* Alinha o texto à direita */
+        box-sizing: border-box;
+        white-space: nowrap; /* Impede que o texto quebre */
+    
+    }
+}
+
+/* Versão para celular */
+@media screen and (min-width: 600px) and (max-width: 768px) {
+    #menu {
+        display: none;
+    }
+
+    menu {
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        top: 59px;
+        right: 0;
+        background-color: #00d7a8c4;
+        box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        transition: opacity 0.4s ease, visibility 0.5s ease;
+    }
+
+    #scanner, #about {
+        display: block;
+    }
+
+    #logotipo {
+        font-size: 13px;
+        margin-right: 32%;
+    }
+
+    #login {
+        width: 200px;        
+    }
+
+    #user-icon, h4 {
+        display: none;
+    }
+
+    #menu-icon {
+        display: block;
         margin-left: 85%;
         filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(277deg) brightness(102%) contrast(103%);
     }
 }
+
+/* Versão para tablet */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    #menu {
+        display: block;
+    }
+
+    menu {
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        top: 59px;
+        right: 0;
+        background-color: #00d7a8c4;
+        box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        transition: opacity 0.4s ease, visibility 0.5s ease;
+    }
+
+    #about {
+        display: block;
+    }
+
+    #logotipo {
+        font-size: 13px;
+        margin-right: 2%;
+        margin-left: 20px;
+    }
+
+    #login {
+        width: 200px;        
+    }
+
+    #user-icon, h4 {
+        display: block;
+    }
+
+    #menu-icon {
+        display: none;
+        margin-left: 85%;
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(277deg) brightness(102%) contrast(103%);
+    }
+}
+

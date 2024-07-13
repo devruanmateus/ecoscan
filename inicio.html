@@ -11,7 +11,7 @@
     <header>
         <div id="container-header">
             <div id="logotipo">
-                <h1>EcoScan</h1>
+                <h1><a href="inicio.html">EcoScan</a></h1>
             </div>
             <div id="menu">
                 <nav>
@@ -21,17 +21,23 @@
                 </nav>
             </div>
             <div id="login">
-                <h4><a href="login.html">Entre</a> | <a href="cadastrar.html">Cadastre-se</a></h4>
+                <!-- Ative a visualização do cadastro e login quando os mesmos estiverem funcionando -->
+                <h4 id="signup-view"><a href="login.html">Entre</a> | <a href="cadastrar.html">Cadastre-se</a></h4>
+                <h4 id="username"><a href="#">Usuário</a></h4>
+                <img src="imagens/menu.png" alt="Menu" width="18" id="menu-icon">
                 <img src="imagens/user.png" alt="Usuário" width="25" id="user-icon">
                 <menu>
                     <ul>
+                        <li><a href="scanner.html" id="scanner">Scanner</a></li>
                         <li><a href="painel.html" id="painel">Painel</a></li>
-                        <li><a href="#">Minha conta</a></li>
-                        <li><a href="#">Meu perfil</a></li>
-                        <li><a href="#">Central de ajuda</a></li>
-                        <li><a href="#">Suporte</a></li>
+                        <li><a href="#" id="my-account">Minha conta</a></li>
+                        <li><a href="#" id="my-profile">Meu perfil</a></li>
+                        <li><a href="#" id="help-center">Central de ajuda</a></li>
+                        <li><a href="#" id="suporte">Suporte</a></li>
+                        <li><a href="sobre.html" id="about">Sobre nós</a></li>
                     </ul>
                 </menu>
+            </div>
             </div>
         </div>
     </header>
