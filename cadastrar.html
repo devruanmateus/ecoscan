@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles/cadastrarstyle.css">
     <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/cadastrar.js"></script>
 </head>
 <body>
     <header>
@@ -27,30 +28,34 @@
         </div>
     </header>
     <main>
+        
         <div id="cadastrar-container">
             <h1 id="titulo">Cadastrar</h1>
+            <div id="msgError"></div>
+            <div id="msgSuccess"></div>
+
             <form action="" method="post">
                 <div class="cadastrar-box">
-                    <label for="iuser">Usuário</label><br>
+                    <label id="labelUsuario" for="iuser">Usuário</label><br>
                     <input type="text" name="user" id="iuser" placeholder="Nome de usuário" minlength="5" maxlength="15" required>
                 </div>
 
                 <div class="cadastrar-box">
-                    <label for="iemail">E-mail</label><br>
+                    <label id="labelEmail" for="iemail">E-mail</label><br>
                     <input type="email" name="email" id="iemail" placeholder="Digite seu email" required>
                 </div>
 
                 <div class="cadastrar-box">
-                    <label for="ipassword">Senha</label><br>
+                    <label id="labelSenha" for="ipassword">Senha</label><br>
                     <input type="password" name="password" id="ipassword" placeholder="Digite sua senha" minlength="5" required>
                 </div>
 
                 <div class="cadastrar-box">
-                    <label for="ipassword">Confirmar senha</label><br>
-                    <input type="password" name="password" id="ipassword" placeholder="Digite a senha novamente" minlength="5" required>
+                    <label id="labelConfirmSenha" for="iconfirmPassword">Confirmar senha</label><br>
+                    <input type="password" name="cofirmPassword" id="iconfirmPassword" placeholder="Digite a senha novamente" minlength="5" required>
                 </div>
 
-                <button id="btn">Cadastre-se</button>
+                <button onclick="cadastrar()" id="btn">Cadastre-se</button>
             </form>
             <p>Se já possui uma conta <a href="login.html"><strong>Faça Login</strong></a></p>
         </div>

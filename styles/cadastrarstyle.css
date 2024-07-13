@@ -12,7 +12,7 @@ main {
 }
 
 #titulo {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 #cadastrar-container input {
@@ -68,3 +68,22 @@ main {
     background-color: #00aa85;
 }
 
+#msgError {
+    text-align: center;
+    color: #ff0000;
+    background-color: #ff1234;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+#msgSuccess {
+    text-align: center;
+    color: #00bb00;
+    background-color: #00D7A7;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: none;
+}
