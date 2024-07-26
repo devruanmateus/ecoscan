@@ -1,3 +1,10 @@
+@charset "UTF-8";
+
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/* Esse arquivo CSS é EXCLUSIVO para o Cabeçário, Posição do Conteúdo Principal e Rodapé */
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+
+/* Fonte da logotipo */
 @font-face {
     font-family: 'Ultimate';
     src: url('fonts/ultimate-serial-extrabold-regular.ttf') format('truetype');
@@ -15,93 +22,82 @@ body {
     height: 100vh;
 }
 
-#container-header {
+header {
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 14px;
+    background-color: #00D7A7;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.071);
+}
+
+div#header-container {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
-    justify-content: center;
     max-width: 1008px;
 }
 
-header {
-    background-color: #00D7A7;
-    padding: 14px;
-    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.071);
-    width: 100%;
-    margin-bottom: 50px;
-}
-
-#logotipo {
+/* Estilo da logotipo do site localizada no cabeçário */
+div#logotipo {
     font-size: 14px;
-    width: 20%;
-    float: right;
 }
 
-#logotipo h1 a {
+div#logotipo h1 a {
+    font-family: 'Ultimate', sans-serif;
+    text-decoration: none;
     color: #fff;
     cursor: pointer;
-    font-family: 'Ultimate', sans-serif;
-    display: inline-block;
-    text-decoration: none;
 }
 
-/* Configs do menu do cabeçário */
-#scanner, #about {
-    display: none;
+/* Estilo do menu localizado no cabeçário */
+div#tabs-container {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-left: 20px;
+    width: 100%;
 }
 
-#menu {
-    width: 90%;
-}
-
-#menu nav {
+div#tabs-container nav ul {
     display: flex;
 }
 
-#menu nav li {
-    display: flex;
+div#tabs-container nav ul li {
     list-style-type: none;
 }
 
-#menu h4 {
-    color: #fff;
-}
-
-#menu nav li a {
+div#tabs-container nav ul li a {
     color: #fff;
     text-decoration: none;
     margin-left: 20px;
     padding: 5px;
 }
 
-#menu nav li a:hover {
+div#tabs-container nav ul li a:hover {
     background-color: #ffffff;
     color: #00D7A7;
     border-radius: 20px;
     padding: 5px;
 }
 
-/* Configs do menu do perfil */
-
-#login {
+/* Estilo do perfil do usuário */
+div#login {
     position: relative;
     float: left;
-
 }
 
-/* Nome de usuário */
 #username a {
+    white-space: nowrap;
     text-decoration: none;
     font-size: 14px;
-    white-space: nowrap;
 }
 
-/* Cont. configs do menu do perfil */
+/* Estilo do menu localizado no perfil do usuário */
 menu {
-    opacity: 0;
+    position: absolute;
     visibility: hidden;
-    position: absolute; /* Muda para 'fixed' para posicionar relativo à tela */
-    top: 43px; /* Ajuste conforme necessário */
+    opacity: 0;
+    top: 43px;
     right: 0;
     background-color: #00d7a8c4;
     box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.2);
@@ -120,15 +116,14 @@ menu ul li:hover {
 }
 
 menu ul li a {
-
     display: block;
-    color: #fff;
-    text-decoration: none;
-    width: 100%;
-    padding: 20px 50px 20px 20px; /* Ajusta o padding para alinhar o texto à direita */
-    text-align: left; /* Alinha o texto à direita */
+    text-align: left;
     box-sizing: border-box;
-    white-space: nowrap; /* Impede que o texto quebre */
+    white-space: nowrap;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    padding: 20px 50px 20px 20px;
 
 }
 
@@ -155,51 +150,45 @@ menu:hover {
     display: block;
 }
 
-/* Visualização das opções de login e cadastro */
+/* Visualização das opções de login e cadastro, 
+que só podem ser visíveis se o usuário não estiver logado */
 #signup-view, #menu-icon {
     display: none;
 }
 
 /* Opções de login e cadastro */
-#login {
+div#login {
     float: right;
 }
 
-#login {
+div#login {
     display: flex;
     align-items: center;
     margin-left: 60px;
 }
 
-#login img {
+div#login img {
     cursor: pointer;
 }
 
-#login h4 {
+div#login h4 {
     margin-right: 10px;
     color: #fff;
 }
 
-#login h4 a {
-    color: #ffffff;
+div#login h4 a {
     text-decoration: none;
+    color: #fff;
 }
 
-#login h4 a:hover {
+div#login h4 a:hover {
     text-decoration: underline;
 }
 
-/* Corpo */
+/* Posição do conteúdo principal */
 main {
     width: 65%;
     margin: auto;
-}
-
-/* Rodapé */
-html, body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Flex container para o conteúdo principal */
@@ -207,28 +196,34 @@ html, body {
     flex: 1;
 }
 
-/* Estilos para o footer */
+/* Estilo do rodapé do site */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 footer {
     background-color: #EFEFEF;
-    width: 100%;
     color: rgb(119, 119, 119);
+    width: 100%;
     height: 2.5rem;
+    line-height: 2.5rem;
     text-align: center;
-    line-height: 2.5rem; /* Alinha verticalmente o texto */
 }
 
 /* Media Queries */
 
 /* Versão para pequenas telas */
 @media screen and (max-width: 600px) {
-    #menu {
+    div#tabs-container {
         display: none;
     }
 
     menu {
-        opacity: 0;
-        visibility: hidden;
         position: fixed;
+        visibility: hidden;
+        opacity: 0;
         top: 59px;
         right: 0;
         background-color: #00d7a8c4;
@@ -241,17 +236,17 @@ footer {
         display: block;
     }
 
-    #logotipo {
+    #user-icon, h4 {
+        display: none;
+    }
+
+    div#logotipo {
         font-size: 13px;
         margin-right: 18%;
     }
 
-    #login {
+    div#login {
         width: 200px;        
-    }
-
-    #user-icon, h4 {
-        display: none;
     }
 
     #menu-icon {
@@ -266,29 +261,28 @@ footer {
     }
 
     menu ul li a {
-
         display: block;
+        text-align: left;
+        box-sizing: border-box;
+        white-space: nowrap;
         color: #fff;
         text-decoration: none;
         width: 100%;
-        padding: 15px 60px 15px 15px; /* Ajusta o padding para alinhar o texto à direita */
-        text-align: left; /* Alinha o texto à direita */
-        box-sizing: border-box;
-        white-space: nowrap; /* Impede que o texto quebre */
+        padding: 15px 60px 15px 15px;
     
     }
 }
 
 /* Versão para celular */
 @media screen and (min-width: 600px) and (max-width: 768px) {
-    #menu {
+    div#tabs-container {
         display: none;
     }
 
     menu {
-        opacity: 0;
-        visibility: hidden;
         position: fixed;
+        visibility: hidden;
+        opacity: 0;
         top: 59px;
         right: 0;
         background-color: #00d7a8c4;
@@ -301,12 +295,12 @@ footer {
         display: block;
     }
 
-    #logotipo {
+    div#logotipo {
         font-size: 13px;
         margin-right: 32%;
     }
 
-    #login {
+    div#login {
         width: 200px;        
     }
 
@@ -323,14 +317,14 @@ footer {
 
 /* Versão para tablet */
 @media screen and (min-width: 768px) and (max-width: 992px) {
-    #menu {
+    div#tabs-container {
         display: block;
     }
 
     menu {
-        opacity: 0;
-        visibility: hidden;
         position: fixed;
+        visibility: hidden;
+        opacity: 0;
         top: 59px;
         right: 0;
         background-color: #00d7a8c4;
@@ -339,17 +333,17 @@ footer {
         transition: opacity 0.4s ease, visibility 0.5s ease;
     }
 
-    #about {
+    div#about {
         display: block;
     }
 
-    #logotipo {
+    div#logotipo {
         font-size: 13px;
         margin-right: 2%;
         margin-left: 20px;
     }
 
-    #login {
+    div#login {
         width: 200px;        
     }
 
