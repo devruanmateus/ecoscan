@@ -45,21 +45,28 @@
         </div>
     </header>
     <main>
-        <div id="container-scanner">
+        <!-- Container de pré-visualização da imagem -->
+        <div id="scanner-container">
             <h1>Faça uma análise de solo degradado</h1> 
             <div id="img-preview">
                 <p id="previewText">Faça o upload da imagem <span></span></p>
                 <img id="inputImage" src="#" alt="Imagem do solo degradado">
             </div>
-    
+        
+            <!-- Botão de selecionar imagem -->
             <div class="file-input-container">
                 <label for="fileInput" class="custom-file-upload">Selecionar arquivo</label>
                 <input type="file" id="fileInput" accept="image/*">
             </div>   
+            
+            <!-- Lugar que aparece o resultado -->
             <div id="result"></div>
         </div>
     
         <script>
+                /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                 [Código que processa e analisa o envio da imagem]
+                -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
                 const preview = document.getElementById('img-preview');
                 const inputImage = document.getElementById('inputImage');
                 const fileInput = document.getElementById('fileInput');
@@ -79,7 +86,7 @@
                     inputImage.style.display = 'none'
                 }
 
-                /* Remove o texto de preview e adiciona a imagem enviada no container */
+                /* Remove o texto de pré-visualização e adiciona a imagem enviada pelo usuário no container */
                 fileInput.addEventListener('change', (event) => {
                     const file = event.target.files[0];
                     if (file) {
@@ -97,7 +104,9 @@
                     }
                 });
 
-                /* Código do analisador de imagens*/
+                /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+                 [Script do Scanner que analisa solos pelas cores e brilho dos píxeis da imagem enviada]
+                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
                 document.getElementById('fileInput').addEventListener('change', function(event) {
                 var file = event.target.files[0];
                 var reader = new FileReader();
@@ -114,22 +123,22 @@
                         var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                         var data = imageData.data;
 
-                        // Initialize counters for each degradation level
+                        // Inicializa contadores para cada nível de degradação
                         var countHighlyDegraded = 0;
                         var countModeratelyDegraded = 0;
                         var countSlightlyDegraded = 0;
                         var countNotDegraded = 0;
 
-                        // Loop through each pixel
+                        // Acessa os píxels da imagem
                         for (var i = 0; i < data.length; i += 4) {
                             var red = data[i];
                             var green = data[i + 1];
                             var blue = data[i + 2];
 
-                            // Calculate average brightness of the pixel
+                            // Calcula o brilho médio do píxel
                             var brightness = (red + green + blue) / 3;
 
-                            // Determine degradation level based on color values and brightness
+                            // Determina o nível de degradação com base nos valores de cor e brilho
                             if (red > 200 && green < 150 && blue < 150 && brightness < 180) {
                                 countHighlyDegraded++;
                             } else if (red > 150 && green < 200 && blue < 150 && brightness < 200) {
@@ -141,17 +150,17 @@
                             }
                         }
 
-                        // Calculate total number of pixels
+                        // Calcula o número total de píxels da imagem
                         var totalPixels = imageData.data.length / 4;
 
-                        // Calculate percentages
+                        // Calcula probabilidades
                         var percentualNotDegraded = (countNotDegraded / totalPixels) * 100;
                         var percentualHighlyDegraded = (countHighlyDegraded / totalPixels) * 100;
                         var percentualModeratelyDegraded = (countModeratelyDegraded / totalPixels) * 100;
                         var percentualSlightlyDegraded = (countSlightlyDegraded / totalPixels) * 100;
 
-                        // Determine the overall degradation status
-                        var degradationStatus = 'Indeterminado'; // Default
+                        // Determina o status geral de degradação
+                        var degradationStatus = 'Indeterminado'; // Padrão
                         if (countNotDegraded > countModeratelyDegraded && countNotDegraded > countSlightlyDegraded) {
                             degradationStatus = 'Solo não degradado';
                         } else if (countModeratelyDegraded > countNotDegraded && countModeratelyDegraded > countSlightlyDegraded) {
@@ -160,7 +169,7 @@
                             degradationStatus = 'Solo degradado';
                         }
 
-                        // Display result
+                        // Mostra o resultado
                         var resultDiv = document.getElementById('result');
                         resultDiv.innerHTML = '<p id="title-result">Resultado da análise:</p>' +
                                             '<ul>' +
@@ -168,7 +177,7 @@
                                             '<li>[1] Solo degradado: ' + percentualModeratelyDegraded.toFixed(2) + '%</li>' +
                                             '<li>[2] Solo degradado: ' + percentualSlightlyDegraded.toFixed(2) + '%</li>' +
                                             '</ul>' +
-                                            '<p id="status-solo">Status de degradação do solo: <strong>' + degradationStatus + '</strong></p>';
+                                            '<p id="status">Status de degradação do solo: <strong>' + degradationStatus + '</strong></p>';
 
                     };
 

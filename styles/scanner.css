@@ -1,3 +1,6 @@
+@charset "UTF-8";
+
+/* Destaca a aba "Scanner" no cabeçário */
 #tab-scan {
     background-color: #02c49a;
     color: #fff;
@@ -5,31 +8,43 @@
     padding: 5px;
 }
 
-#container-scanner {
+div#scanner-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-#img-preview {
+/* Estilo da caixa de pré-visualização da imagem */
+div#img-preview {
     display: flex;
+    position: relative;
     flex-flow: column wrap;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    width: 400px;
+    height: 250px;
     padding: 20px;
     border: 3px solid #9e9c9c;
-    position: relative; /* Para o posicionamento correto da imagem */
-    width: 400px; /* Largura total do container */
-    height: 250px; /* Altura desejada para o container */
-    overflow: hidden; /* Para esconder partes da imagem que excedem o container */
     margin-top: 20px;
     cursor: pointer;
 }
 
-#img-preview:hover {
+div#img-preview:hover {
     background-color: rgba(194, 194, 194, 0.218);
 }
 
+div#img-preview img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+}
+
+
+/* Estilo do botão de selecionar o arquivo */
 .file-input-container {
     margin-top: 20px;
     position: relative;
@@ -59,20 +74,13 @@
     background-color: #04896d;
 }
 
-.file-name {
-    margin-top: 12px;
+/* Estilo do resultado da análise realizada pelo Scanner */
+#title-result {
+    font-size: 22px;
+    margin-bottom: 15px;
 }
 
-#img-preview img{
-    position: absolute;
-    height: 100%;
-    width: 100%; /* A imagem ocupa toda a largura do container */
-    object-fit: cover; /* Faz a imagem cobrir completamente o container */
-    top: 0; /* Alinha a imagem no topo do container */
-    left: 0; /* Alinha a imagem na esquerda do container */
-}
-
-#result {
+div#result {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -80,45 +88,39 @@
     border-radius: 10px;
 }
 
-#result ul {
+div#result ul {
     padding: 0;
     margin: 0;
 }
 
-#result ul li {
+div#result ul li {
     display: flex;
     flex-flow: column wrap;
     list-style-type: none;
-    padding: 10px; /* Adicione um padding para espaçamento */
-    border-bottom: 1px solid #ccc; /* Linha no final de cada item */
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
-#result ul li:nth-child(odd) {
+div#result ul li:nth-child(odd) { /* Cria o efeito zebrado no fundo das etapas da análise */
     background-color: rgb(197, 196, 196);
 }
 
-#title-result {
-    font-size: 22px;
-    margin-bottom: 15px;
-}
-
-#status-solo{
+#status { /* Estilo do resultado definitivo */
     padding: 10px;
     font-size: 17px;
+    margin-top: 10px;
+    border-radius: 10px;
     background-color: #414141;
     color: #fff;
-    border-radius: 10px;
-    margin-top: 10px;
 }
 
 #content {
     margin-bottom: 50px;
 }
 
-/* Media Queries - Responsividade */
-
+/* Responsividade da caixa de pré-visualização da imagem para celular */
 @media screen and (max-width: 600px) {
-    #img-preview {
+    div#img-preview {
         width: 100%;
     }
 }
