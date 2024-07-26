@@ -10,34 +10,41 @@
 </head>
 <body>
     <header>
+        <!-- Container que engloba o conteúdo do cabeçário -->
         <div id="header-container">
+            <!-- Logotipo do site -->
             <div id="logotipo">
-                <h1><a href="inicio.html">EcoScan</a></h1>
+                <h1><a href="home.html">EcoScan</a></h1>
             </div>
+
+            <!-- Menu de navegação -->
             <div id="tabs-container">
                 <nav>
                     <ul>
-                        <li><a href="inicio.html">Inicio</a></li>
+                        <li><a href="home.html" id="tab-home">Inicio</a></li>
                         <li><a href="scanner.html" id="tab-scan">Scanner</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="about.html" id="tab-about">Sobre</a></li>
                     </ul>
                 </nav>
             </div>
+
+            <!-- Configurações de usuário -->
             <div id="login">
                 <!-- Ative a visualização do cadastro e login quando os mesmos estiverem funcionando -->
-                <h4 id="signup-view"><a href="login.html">Entre</a> | <a href="cadastrar.html">Cadastre-se</a></h4>
+                <h4 id="signup-view"><a href="login.html">Entre</a> | <a href="signup.html">Cadastre-se</a></h4>
                 <h4 id="username"><a href="#">Usuário</a></h4>
-                <img src="imagens/menu.png" alt="Menu" width="18" id="menu-icon">
-                <img src="imagens/user.png" alt="Usuário" width="25" id="user-icon">
+                <span class="material-symbols-outlined" id="menu-icon">menu</span>
+                <span class="material-symbols-outlined" id="user-icon">account_circle</span>
+                <!-- Menu do usuário -->
                 <menu>
                     <ul>
-                        <li><a href="scanner.html" id="scanner">Scanner</a></li>
-                        <li><a href="painel.html" id="painel">Painel</a></li>
+                        <li><a href="scanner.html" id="menu-scanner">Scanner</a></li>
+                        <li><a href="panel.html" id="menu-panel">Painel</a></li>
                         <li><a href="#" id="my-account">Minha conta</a></li>
                         <li><a href="#" id="my-profile">Meu perfil</a></li>
                         <li><a href="#" id="help-center">Central de ajuda</a></li>
                         <li><a href="#" id="suporte">Suporte</a></li>
-                        <li><a href="sobre.html" id="about">Sobre nós</a></li>
+                        <li><a href="about.html" id="menu-about">Sobre nós</a></li>
                     </ul>
                 </menu>
             </div>
@@ -62,134 +69,10 @@
             <!-- Lugar que aparece o resultado -->
             <div id="result"></div>
         </div>
-    
-        <script>
-                /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-                 [Código que processa e analisa o envio da imagem]
-                -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
-                const preview = document.getElementById('img-preview');
-                const inputImage = document.getElementById('inputImage');
-                const fileInput = document.getElementById('fileInput');
-                const previewText = document.getElementById('previewText');
 
-                // Função nomeada para o clique no preview
-                const handlePreviewClick = () => {
-                    fileInput.click();
-                };
-
-                preview.addEventListener('click', handlePreviewClick);
-
-                // Garante que a imagem de preview só apareça após o envio do arquivo
-                if (previewText.style.display == 'none') {
-                    inputImage.style.display = 'block'
-                } else {
-                    inputImage.style.display = 'none'
-                }
-
-                /* Remove o texto de pré-visualização e adiciona a imagem enviada pelo usuário no container */
-                fileInput.addEventListener('change', (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            inputImage.src = e.target.result;
-                            inputImage.style.display = 'block';
-                            previewText.style.display = 'none';
-                            preview.style.cursor = 'default'
-                            
-                             // Remove o listener de clique no preview
-                            preview.removeEventListener('click', handlePreviewClick);
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-
-                /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-                 [Script do Scanner que analisa solos pelas cores e brilho dos píxeis da imagem enviada]
-                 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
-                document.getElementById('fileInput').addEventListener('change', function(event) {
-                var file = event.target.files[0];
-                var reader = new FileReader();
-
-                reader.onload = function() {
-                    var img = new Image();
-                    img.onload = function() {
-                        var canvas = document.createElement('canvas');
-                        var ctx = canvas.getContext('2d');
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        ctx.drawImage(img, 0, 0);
-
-                        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                        var data = imageData.data;
-
-                        // Inicializa contadores para cada nível de degradação
-                        var countHighlyDegraded = 0;
-                        var countModeratelyDegraded = 0;
-                        var countSlightlyDegraded = 0;
-                        var countNotDegraded = 0;
-
-                        // Acessa os píxels da imagem
-                        for (var i = 0; i < data.length; i += 4) {
-                            var red = data[i];
-                            var green = data[i + 1];
-                            var blue = data[i + 2];
-
-                            // Calcula o brilho médio do píxel
-                            var brightness = (red + green + blue) / 3;
-
-                            // Determina o nível de degradação com base nos valores de cor e brilho
-                            if (red > 200 && green < 150 && blue < 150 && brightness < 180) {
-                                countHighlyDegraded++;
-                            } else if (red > 150 && green < 200 && blue < 150 && brightness < 200) {
-                                countModeratelyDegraded++;
-                            } else if (red > 100 && green < 250 && blue < 200 && brightness < 220) {
-                                countSlightlyDegraded++;
-                            } else {
-                                countNotDegraded++;
-                            }
-                        }
-
-                        // Calcula o número total de píxels da imagem
-                        var totalPixels = imageData.data.length / 4;
-
-                        // Calcula probabilidades
-                        var percentualNotDegraded = (countNotDegraded / totalPixels) * 100;
-                        var percentualHighlyDegraded = (countHighlyDegraded / totalPixels) * 100;
-                        var percentualModeratelyDegraded = (countModeratelyDegraded / totalPixels) * 100;
-                        var percentualSlightlyDegraded = (countSlightlyDegraded / totalPixels) * 100;
-
-                        // Determina o status geral de degradação
-                        var degradationStatus = 'Indeterminado'; // Padrão
-                        if (countNotDegraded > countModeratelyDegraded && countNotDegraded > countSlightlyDegraded) {
-                            degradationStatus = 'Solo não degradado';
-                        } else if (countModeratelyDegraded > countNotDegraded && countModeratelyDegraded > countSlightlyDegraded) {
-                            degradationStatus = 'Solo degradado';
-                        } else if (countSlightlyDegraded > countNotDegraded && countSlightlyDegraded > countModeratelyDegraded) {
-                            degradationStatus = 'Solo degradado';
-                        }
-
-                        // Mostra o resultado
-                        var resultDiv = document.getElementById('result');
-                        resultDiv.innerHTML = '<p id="title-result">Resultado da análise:</p>' +
-                                            '<ul>' +
-                                            '<li>Solo não degradado: ' + percentualNotDegraded.toFixed(2) + '%</li>' +
-                                            '<li>[1] Solo degradado: ' + percentualModeratelyDegraded.toFixed(2) + '%</li>' +
-                                            '<li>[2] Solo degradado: ' + percentualSlightlyDegraded.toFixed(2) + '%</li>' +
-                                            '</ul>' +
-                                            '<p id="status">Status de degradação do solo: <strong>' + degradationStatus + '</strong></p>';
-
-                    };
-
-                    img.src = reader.result;
-                    document.getElementById('inputImage').src = reader.result;
-                };
-
-                reader.readAsDataURL(file);
-            });
-        </script>
     </main>
 
+    <!-- Div vazia que espaça o conteúdo principal do rodapé -->
     <div id="content">
 
     </div>
@@ -197,5 +80,7 @@
     <footer>
         <p>Feira de Ciências &copy;</p>
     </footer>
+
+    <script src="scripts/script.js"></script>
 </body>
 </html>

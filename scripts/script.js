@@ -1,5 +1,47 @@
+/* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    [Código que processa e analisa o envio da imagem]
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+    const preview = document.querySelector('#img-preview');
+    const inputImage = document.querySelector('#inputImage');
+    const fileInput = document.querySelector('#fileInput');
+    const previewText = document.querySelector('#previewText');
 
-document.getElementById('fileInput').addEventListener('change', function(event) {
+    // Função nomeada para o clique no preview
+    const handlePreviewClick = () => {
+        fileInput.click();
+    };
+
+    preview.addEventListener('click', handlePreviewClick);
+
+    // Garante que a imagem de preview só apareça após o envio do arquivo
+    if (previewText.style.display == 'none') {
+        inputImage.style.display = 'block'
+    } else {
+        inputImage.style.display = 'none'
+    }
+
+    /* Remove o texto de pré-visualização e adiciona a imagem enviada pelo usuário no container */
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                inputImage.src = e.target.result;
+                inputImage.style.display = 'block';
+                previewText.style.display = 'none';
+                preview.style.cursor = 'default'
+                
+                    // Remove o listener de clique no preview
+                preview.removeEventListener('click', handlePreviewClick);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        [Script do Scanner que analisa solos pelas cores e brilho dos píxeis da imagem enviada]
+        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+    document.getElementById('fileInput').addEventListener('change', function(event) {
     var file = event.target.files[0];
     var reader = new FileReader();
 
@@ -15,22 +57,22 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             var data = imageData.data;
 
-            // Initialize counters for each degradation level
+            // Inicializa contadores para cada nível de degradação
             var countHighlyDegraded = 0;
             var countModeratelyDegraded = 0;
             var countSlightlyDegraded = 0;
             var countNotDegraded = 0;
 
-            // Loop through each pixel
+            // Acessa os píxels da imagem
             for (var i = 0; i < data.length; i += 4) {
                 var red = data[i];
                 var green = data[i + 1];
                 var blue = data[i + 2];
 
-                // Calculate average brightness of the pixel
+                // Calcula o brilho médio do píxel
                 var brightness = (red + green + blue) / 3;
 
-                // Determine degradation level based on color values and brightness
+                // Determina o nível de degradação com base nos valores de cor e brilho
                 if (red > 200 && green < 150 && blue < 150 && brightness < 180) {
                     countHighlyDegraded++;
                 } else if (red > 150 && green < 200 && blue < 150 && brightness < 200) {
@@ -42,17 +84,17 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
                 }
             }
 
-            // Calculate total number of pixels
+            // Calcula o número total de píxels da imagem
             var totalPixels = imageData.data.length / 4;
 
-            // Calculate percentages
+            // Calcula probabilidades
             var percentualNotDegraded = (countNotDegraded / totalPixels) * 100;
             var percentualHighlyDegraded = (countHighlyDegraded / totalPixels) * 100;
             var percentualModeratelyDegraded = (countModeratelyDegraded / totalPixels) * 100;
             var percentualSlightlyDegraded = (countSlightlyDegraded / totalPixels) * 100;
 
-            // Determine the overall degradation status
-            var degradationStatus = 'Indeterminado'; // Default
+            // Determina o status geral de degradação
+            var degradationStatus = 'Indeterminado'; // Padrão
             if (countNotDegraded > countModeratelyDegraded && countNotDegraded > countSlightlyDegraded) {
                 degradationStatus = 'Solo não degradado';
             } else if (countModeratelyDegraded > countNotDegraded && countModeratelyDegraded > countSlightlyDegraded) {
@@ -61,16 +103,16 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
                 degradationStatus = 'Solo degradado';
             }
 
-            // Display result
+            // Mostra o resultado
             var resultDiv = document.getElementById('result');
             resultDiv.innerHTML = '<p id="title-result">Resultado da análise:</p>' +
-                                  '<ul>' +
-                                  '<li>Solo não degradado: ' + percentualNotDegraded.toFixed(2) + '%</li>' +
-                                  '<li>Solo altamente degradado: ' + percentualHighlyDegraded.toFixed(2) + '%</li>' +
-                                  '<li>Solo moderadamente degradado: ' + percentualModeratelyDegraded.toFixed(2) + '%</li>' +
-                                  '<li>Solo levemente degradado: ' + percentualSlightlyDegraded.toFixed(2) + '%</li>' +
-                                  '</ul>' +
-                                  '<p id="status-solo">Status de degradação do solo: <strong>' + degradationStatus + '</strong></p>';
+                                '<ul>' +
+                                '<li>Solo não degradado: ' + percentualNotDegraded.toFixed(2) + '%</li>' +
+                                '<li>[1] Solo degradado: ' + percentualModeratelyDegraded.toFixed(2) + '%</li>' +
+                                '<li>[2] Solo degradado: ' + percentualSlightlyDegraded.toFixed(2) + '%</li>' +
+                                '</ul>' +
+                                '<p id="status">Status de degradação do solo: <strong>' + degradationStatus + '</strong></p>';
+
         };
 
         img.src = reader.result;
@@ -78,11 +120,4 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
     };
 
     reader.readAsDataURL(file);
-
-    // Update file name
-    var fileName = this.files[0].name;
-    document.getElementById('fileName').textContent = "Arquivo selecionado: " + fileName;
-
-    // Hide the file input label after image is selected
-    document.querySelector('.custom-file-upload').style.display = 'none';
 });

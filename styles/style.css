@@ -51,11 +51,15 @@ div#logotipo h1 a {
 }
 
 /* Estilo do menu localizado no cabeçário */
+#menu-scanner, #menu-about, #menu-panel {
+    display: none;
+}
+
 div#tabs-container {
     display: flex;
     flex-flow: row nowrap;
     margin-left: 20px;
-    width: 100%;
+    width: 65%;
 }
 
 div#tabs-container nav ul {
@@ -125,6 +129,10 @@ menu ul li a {
     width: 100%;
     padding: 20px 50px 20px 20px;
 
+}
+
+#user-icon, #menu-icon {
+    cursor: pointer;
 }
 
 #user-icon:hover ~ menu,
@@ -232,7 +240,7 @@ footer {
         transition: opacity 0.4s ease, visibility 0.5s ease;
     }
 
-    #scanner, #about {
+    #menu-scanner, #menu-about, #menu-panel {
         display: block;
     }
 
@@ -291,7 +299,7 @@ footer {
         transition: opacity 0.4s ease, visibility 0.5s ease;
     }
 
-    #scanner, #about {
+    #menu-scanner, #menu-about, #menu-panel {
         display: block;
     }
 

@@ -4,38 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecoscan</title>
-    <link rel="stylesheet" href="styles/sobrestyle.css">
+    <link rel="stylesheet" href="styles/about.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <header>
-        <div id="container-header">
+        <!-- Container que engloba o conteúdo do cabeçário -->
+        <div id="header-container">
+            <!-- Logotipo do site -->
             <div id="logotipo">
-                <h1><a href="inicio.html">EcoScan</a></h1>
+                <h1><a href="home.html">EcoScan</a></h1>
             </div>
-            <div id="menu">
+
+            <!-- Menu de navegação -->
+            <div id="tabs-container">
                 <nav>
-                    <li><a href="inicio.html">Inicio</a></li>
-                    <li><a href="scanner.html">Scanner</a></li>
-                    <li><a href="sobre.html" id="sobre">Sobre</a></li>
+                    <ul>
+                        <li><a href="home.html" id="tab-home">Inicio</a></li>
+                        <li><a href="scanner.html" id="tab-scan">Scanner</a></li>
+                        <li><a href="about.html" id="tab-about">Sobre</a></li>
+                    </ul>
                 </nav>
             </div>
+
+            <!-- Configurações de usuário -->
             <div id="login">
-                <h4 id="signup-view"><a href="login.html">Entre</a> | <a href="cadastrar.html">Cadastre-se</a></h4>
+                <!-- Ative a visualização do cadastro e login quando os mesmos estiverem funcionando -->
+                <h4 id="signup-view"><a href="login.html">Entre</a> | <a href="signup.html">Cadastre-se</a></h4>
                 <h4 id="username"><a href="#">Usuário</a></h4>
-                <img src="imagens/user.png" alt="Usuário" width="25" id="user-icon">
-                <img src="imagens/menu.png" alt="Menu" width="18" id="menu-icon">
+                <span class="material-symbols-outlined" id="menu-icon">menu</span>
+                <span class="material-symbols-outlined" id="user-icon">account_circle</span>
+                <!-- Menu do usuário -->
                 <menu>
                     <ul>
                         <li><a href="scanner.html" id="scanner">Scanner</a></li>
-                        <li><a href="painel.html" id="painel">Painel</a></li>
+                        <li><a href="panel.html" id="panel">Painel</a></li>
                         <li><a href="#" id="my-account">Minha conta</a></li>
                         <li><a href="#" id="my-profile">Meu perfil</a></li>
                         <li><a href="#" id="help-center">Central de ajuda</a></li>
                         <li><a href="#" id="suporte">Suporte</a></li>
-                        <li><a href="sobre.html" id="about">Sobre nós</a></li>
+                        <li><a href="about.html" id="about">Sobre nós</a></li>
                     </ul>
                 </menu>
+            </div>
             </div>
         </div>
     </header>
@@ -51,7 +63,7 @@
             </div>
 
             <div id="ilustracao">
-                <img src="imagens/8618611.jpg" alt="" width="430">
+                <img src="imagens/big-idea.jpg" alt="" width="430">
             </div>
         </div>
     </main>
