@@ -7,21 +7,28 @@
 }
 
 /* Conteúdo */
-#container-sobre {
+article {
     display: flex;
     width: 100%;
     text-align: justify;
 }
 
-#introducao h1 {
+section {
+    width: 100%;
+}
+
+section > h1 {
+    font-size: 25px;
     margin-bottom: 20px;
 }
 
-#introducao p {
+section > p {
     font-family: 'Times New Roman', Times, serif;
     line-height: 1.3em;
     font-size: 22px;
     color: rgb(120, 117, 117);
+    margin-bottom: 50px;
+
 }
 
 /* RODAPÉ */
