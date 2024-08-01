@@ -5,6 +5,7 @@
     const inputImage = document.querySelector('#inputImage');
     const fileInput = document.querySelector('#fileInput');
     const previewText = document.querySelector('#previewText');
+    const loadingElement = document.getElementById('loading');
 
     // Função nomeada para o clique no preview
     const handlePreviewClick = () => {
@@ -20,34 +21,35 @@
         inputImage.style.display = 'none'
     }
 
-    /* Remove o texto de pré-visualização e adiciona a imagem enviada pelo usuário no container */
-    fileInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                inputImage.src = e.target.result;
-                inputImage.style.display = 'block';
-                previewText.style.display = 'none';
-                preview.style.cursor = 'default'
-                
-                    // Remove o listener de clique no preview
-                preview.removeEventListener('click', handlePreviewClick);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+    // Remove o texto de pré-visualização e adiciona a imagem enviada pelo usuário no container
+fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            inputImage.src = e.target.result;
+            inputImage.style.display = 'block';
+            previewText.style.display = 'none';
+            preview.style.cursor = 'default';
+            
+            // Remove o listener de clique no preview
+            preview.removeEventListener('click', handlePreviewClick);
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
-    /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        [Script do Scanner que analisa solos pelas cores e brilho dos píxeis da imagem enviada]
-        -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
-    document.getElementById('fileInput').addEventListener('change', function(event) {
+// Adiciona a análise de imagem com a tela de carregamento
+document.getElementById('fileInput').addEventListener('change', function(event) {
     var file = event.target.files[0];
     var reader = new FileReader();
 
     reader.onload = function() {
         var img = new Image();
         img.onload = function() {
+            // Mostra a tela de carregamento
+            loadingElement.style.display = 'flex'; // Flex para centralizar o texto
+            
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
             canvas.width = img.width;
@@ -103,15 +105,21 @@
                 degradationStatus = 'Solo degradado';
             }
 
-            // Mostra o resultado
-            var resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = '<p id="title-result">Resultado da análise:</p>' +
-                                '<ul>' +
-                                '<li>Solo não degradado: ' + percentualNotDegraded.toFixed(2) + '%</li>' +
-                                '<li>[1] Solo degradado: ' + percentualModeratelyDegraded.toFixed(2) + '%</li>' +
-                                '<li>[2] Solo degradado: ' + percentualSlightlyDegraded.toFixed(2) + '%</li>' +
-                                '</ul>' +
-                                '<p id="status">Status de degradação do solo: <strong>' + degradationStatus + '</strong></p>';
+            // Usa setTimeout para exibir a tela de carregamento por alguns segundos
+            setTimeout(() => {
+                // Oculta a tela de carregamento
+                loadingElement.style.display = 'none';
+
+                // Mostra o resultado
+                var resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = '<p id="title-result">Resultado da análise:</p>' +
+                                    '<ul>' +
+                                    '<li>Solo não degradado: ' + percentualNotDegraded.toFixed(2) + '%</li>' +
+                                    '<li>[1] Solo degradado: ' + percentualModeratelyDegraded.toFixed(2) + '%</li>' +
+                                    '<li>[2] Solo degradado: ' + percentualSlightlyDegraded.toFixed(2) + '%</li>' +
+                                    '</ul>' +
+                                    '<p id="status">Status de degradação do solo: <strong>' + degradationStatus + '</strong></p>';
+            }, 300); // 200 milissegundos = 0,3 segundos
 
         };
 

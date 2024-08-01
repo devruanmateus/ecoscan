@@ -86,6 +86,22 @@ html, body {
     flex-direction: column;
 }
 
+#loading {
+    display: none; /* Inicialmente oculto */
+    position: absolute; /* Para cobrir o container */
+    top: 0;
+    left: 0;
+    width: 100%; /* Preencher todo o espaço */
+    height: 100%; /* Preencher todo o espaço */
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+    color: #000; /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    z-index: 10; /* Fica acima de outros elementos */
+    font-size: 20px; /* Tamanho da fonte */
+}
+
 /* Media queries para responsividade em diferentes telas */
 @media screen and (max-width: 868px) {
     div#content-container {
