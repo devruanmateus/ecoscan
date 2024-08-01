@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'Ultimate';
+    src: url('../fonts/ultimate-serial-extrabold-regular.ttf');
+}
 /* Menu */
 #tab-about {
     background-color: #02c49a;
@@ -33,6 +37,8 @@ section {
 }
 
 section > h1 {
+    display: flex;
+    flex-flow: row nowrap;
     font-size: 27px;
     margin-bottom: 20px;
     color: #fff;
@@ -62,15 +68,15 @@ section > p > a:hover {
 
 /* Posicionamento e estilo da imagem */
 div#illustration-container {
-    width: 100%;
+    width: 60%;
     display: flex;
-    justify-content: center; /* Centraliza a imagem horizontalmente */
+    justify-content: center; 
     overflow: hidden;
 }
 
 div#illustration-container img {
     width: 100%;
-    height: auto; /* Mantém a proporção da imagem */
+    height: auto; 
     object-fit: cover;
 }
 
@@ -122,11 +128,6 @@ html, body {
         padding: 10px; /* Ajusta o padding para telas menores */
         width: 100%; /* Garante que o article ocupe toda a largura disponível */
         margin-top: 10px; /* Adiciona espaço entre os elementos */
-    }
-
-    div#illustration-container {
-        width: 100%;
-        margin-bottom: 10px; /* Adiciona espaço abaixo da imagem */
     }
 
     section > h1 {
