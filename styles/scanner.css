@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'Ultimate';
+    src: url('../fonts/ultimate-serial-extrabold-regular.ttf');
+}
 /* Destaca a aba "Scanner" no cabeçário */
 #tab-scan {
     background-color: #02c49a;

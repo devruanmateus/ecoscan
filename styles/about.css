@@ -114,13 +114,12 @@ html, body {
         align-items: flex-end;
         flex-flow: column nowrap;
         align-items: center; /* Centraliza o conteúdo no eixo horizontal */
-        padding: 10px; /* Ajusta o padding para telas menores */
     }
 
     div#illustration-container {
         width: 100%;
         height: auto; /* Ajusta a altura do container da imagem automaticamente para telas menores */
-        margin-bottom: 10px; /* Adiciona espaço abaixo da imagem */
+        border-radius: 0px 0px 10px 10px;
     }
 
     article {

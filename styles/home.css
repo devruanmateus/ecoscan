@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'Ultimate';
+    src: url('../fonts/ultimate-serial-extrabold-regular.ttf');
+}
 /* Menu */
 #tab-home {
     background-color: #02c49a;
