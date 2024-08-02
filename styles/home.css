@@ -4,11 +4,150 @@
     font-family: 'Ultimate';
     src: url('../fonts/ultimate-serial-extrabold-regular.ttf');
 }
+
 /* Menu */
+main {
+    margin: 0;
+}
+
 #tab-home {
-    background-color: #02c49a;
     color: #fff;
     border-radius: 20px;
     padding: 5px;
 }
 
+/* Estilo da seção de apresentação do projeto */
+section#welcome-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #02c49a;
+    border-radius: 5px;
+    width: 100%;
+    height: 40vh;
+    flex-flow: row nowrap;
+}
+
+div#title-project {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background-size: cover;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    font-size: 32px;
+    padding: 40px;
+    margin-right: 50px;
+}
+
+div#title-project h1 {
+    font-weight: lighter;
+}
+
+div#cactus-icon {
+    display: flex;
+    position: absolute;
+    margin-left: 50px;
+    bottom: 0;
+    right: 0;
+}
+
+div#cactus-icon img {
+    width: 170px;
+    margin-right: 10px;
+    filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(236deg) brightness(400%) contrast(103%);
+}
+
+div#search {
+    width: 10px;
+    display: inline-block;
+    background-color: #ffffff;
+}
+
+/* Estilos da seção de benefícios do scanner */
+section#benefits-container {
+    display: flex;
+    background-color: whitesmoke;
+    gap: 50px;
+    padding: 20px;
+}
+
+/* Tamanho dos ícones */
+section#benefits-container span {
+    font-size: 30px;
+    color: #fff;
+    background-color: #02C49A;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+div.benefits {
+    text-align: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+div.benefits p {
+    margin-top: 20px;
+}
+
+/* Espaçamento entre o conteúdo e o rodapé */
+footer {
+    margin-top: 80px;
+}
+/* Reponsividade para diferentes telas */
+@media screen and (max-width: 600px) {
+    /* Estilo responsivo da seção de apresentação */
+    div#title-project {
+        font-size: 20px;
+        flex-flow: column nowrap;
+    }
+
+    div#cactus-icon img {
+        width: 100px;
+    }
+
+    /* Estilo responsivo da seção de benefícios */
+    section#benefits-container {
+        flex-flow: column wrap;
+    }
+
+    div.benefits {
+        flex-flow: column wrap;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 768px) {
+     /* Estilo responsivo da seção de apresentação */
+     div#title-project {
+        font-size: 20px;
+        flex-flow: column nowrap;
+    }
+
+    div#cactus-icon img {
+        width: 100px;
+    }
+
+    /* Estilo responsivo da seção de benefícios */
+    section#benefits-container {
+        flex-flow: column wrap;
+    }
+
+    div.benefits {
+        flex-flow: column wrap;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    div#title-project {
+        font-size: 25px;
+        flex-flow: column nowrap;
+    }
+
+    div#cactus-icon img {
+        width: 150px;
+    }
+}
